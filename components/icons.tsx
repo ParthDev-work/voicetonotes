@@ -447,3 +447,35 @@ export function InfoIcon(props: IconProps) {
     </Outline>
   );
 }
+
+export function VideoCameraIcon(props: IconProps) {
+  return (
+    <Outline {...props}>
+      <rect x="2.5" y="6.5" width="12.5" height="11" rx="2.5" />
+      <path d="M15 10.3 21 7v10l-6-3.3" />
+    </Outline>
+  );
+}
+
+export function SlidersIcon(props: IconProps) {
+  return (
+    <Outline {...props}>
+      <path d="M4 6h9M17 6h3" />
+      <path d="M4 12h3M11 12h9" />
+      <path d="M4 18h12M20 18h0" />
+      <circle cx="13" cy="6" r="2" />
+      <circle cx="7" cy="12" r="2" />
+      <circle cx="16" cy="18" r="2" />
+    </Outline>
+  );
+}
+
+export function DownloadIcon(props: IconProps) {
+  return (
+    <Outline {...props}>
+      <path d="M12 3v12" />
+      <path d="M7 10.5 12 15.5 17 10.5" />
+      <path d="M4.5 18.5v1.5a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-1.5" />
+    </Outline>
+  );
+}

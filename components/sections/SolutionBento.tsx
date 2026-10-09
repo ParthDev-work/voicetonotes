@@ -4,7 +4,9 @@ import { useState, type CSSProperties, type ReactNode } from "react";
 import Image from "next/image";
 import Slide from "@/components/Slide";
 import RevealGroup from "@/components/RevealGroup";
-import FigmaPreviewModal from "@/components/FigmaPreviewModal";
+import PreviewModal from "@/components/PreviewModal";
+import IntroPreview from "@/components/previews/IntroPreview";
+import FeaturePreview from "@/components/previews/FeaturePreview";
 import { MicIcon, SparkleIcon, PersonSpeakingIcon } from "@/components/icons";
 
 // Design.pdf §3 — 1440 × 1022
@@ -18,11 +20,6 @@ import { MicIcon, SparkleIcon, PersonSpeakingIcon } from "@/components/icons";
 // of them renders a touch taller than assumed. Flow layout makes that
 // class of bug structurally impossible — a sibling can only ever start
 // below the one before it.
-
-const FIGMA_INTRO_URL =
-  "https://www.figma.com/design/e8bkplFozVYupdg4paxJee/UI-Test?node-id=7523-12395&t=QUALyKJLEjtbbhqc-1";
-const FIGMA_FEATURE_URL =
-  "https://www.figma.com/design/e8bkplFozVYupdg4paxJee/UI-Test?node-id=7523-12361&t=QUALyKJLEjtbbhqc-1";
 
 const featureTiles = [
   {
@@ -60,7 +57,7 @@ function CardButton({
       type="button"
       data-reveal
       onClick={onOpen}
-      aria-label={`Open design preview — ${label}`}
+      aria-label={`Open preview — ${label}`}
       className={`${className} focus-ring cursor-pointer text-left`}
       style={style}
     >
@@ -420,7 +417,7 @@ export default function SolutionBento() {
             type="button"
             data-reveal
             onClick={() => setPreview("intro")}
-            aria-label="Open design preview — VoiceToNotes overview"
+            aria-label="Open preview — VoiceToNotes overview"
             className="focus-ring cursor-pointer rounded-2xl bg-card p-6 text-left shadow-card"
           >
             <Image
@@ -444,7 +441,7 @@ export default function SolutionBento() {
                 key={title}
                 data-reveal
                 onClick={() => setPreview("feature")}
-                aria-label={`Open design preview — ${title}`}
+                aria-label={`Open preview — ${title}`}
                 className="focus-ring flex cursor-pointer flex-col items-center rounded-2xl bg-card-muted px-3 py-5 text-center shadow-card"
               >
                 <Icon aria-hidden className="h-7 w-7 text-ink-700" />
@@ -460,7 +457,7 @@ export default function SolutionBento() {
             type="button"
             data-reveal
             onClick={() => setPreview("feature")}
-            aria-label="Open design preview — From Notes to Audio & Video"
+            aria-label="Open preview — From Notes to Audio & Video"
             className="focus-ring relative aspect-[16/11] w-full cursor-pointer overflow-hidden rounded-2xl shadow-card"
           >
             <Image
@@ -476,7 +473,7 @@ export default function SolutionBento() {
             type="button"
             data-reveal
             onClick={() => setPreview("feature")}
-            aria-label="Open design preview — Text-to-Audio"
+            aria-label="Open preview — Text-to-Audio"
             className="focus-ring cursor-pointer rounded-2xl bg-card p-6 text-left shadow-card"
           >
             <p className="m-0 text-[22px] font-semibold text-ink-700">
@@ -500,7 +497,7 @@ export default function SolutionBento() {
             type="button"
             data-reveal
             onClick={() => setPreview("feature")}
-            aria-label="Open design preview — Customizable Parameters"
+            aria-label="Open preview — Customizable Parameters"
             className="focus-ring cursor-pointer rounded-2xl bg-card p-6 text-left shadow-card"
           >
             <p className="m-0 text-[22px] font-semibold text-ink-700">
@@ -515,7 +512,7 @@ export default function SolutionBento() {
             type="button"
             data-reveal
             onClick={() => setPreview("feature")}
-            aria-label="Open design preview — Text-to-Video"
+            aria-label="Open preview — Text-to-Video"
             className="focus-ring cursor-pointer rounded-2xl bg-card p-6 text-left shadow-card"
           >
             <p className="m-0 text-[22px] font-semibold text-ink-700">
@@ -540,7 +537,7 @@ export default function SolutionBento() {
             type="button"
             data-reveal
             onClick={() => setPreview("feature")}
-            aria-label="Open design preview — Cross-Device Sync"
+            aria-label="Open preview — Cross-Device Sync"
             className="focus-ring cursor-pointer rounded-2xl bg-card p-6 text-left shadow-card"
           >
             <p className="m-0 text-[22px] font-semibold text-ink-700">
@@ -555,7 +552,7 @@ export default function SolutionBento() {
             type="button"
             data-reveal
             onClick={() => setPreview("feature")}
-            aria-label="Open design preview — Multi-language Support"
+            aria-label="Open preview — Multi-language Support"
             className="focus-ring relative aspect-[16/9] w-full cursor-pointer overflow-hidden rounded-2xl shadow-card"
           >
             <Image
@@ -570,15 +567,12 @@ export default function SolutionBento() {
       </RevealGroup>
 
       {preview && (
-        <FigmaPreviewModal
-          figmaUrl={preview === "intro" ? FIGMA_INTRO_URL : FIGMA_FEATURE_URL}
-          title={
-            preview === "intro"
-              ? "VoiceToNotes overview — Figma"
-              : "Feature detail — Figma"
-          }
+        <PreviewModal
+          title={preview === "intro" ? "VoiceToNotes Overview" : "Audio & Video Generation"}
           onClose={() => setPreview(null)}
-        />
+        >
+          {preview === "intro" ? <IntroPreview /> : <FeaturePreview />}
+        </PreviewModal>
       )}
     </section>
   );

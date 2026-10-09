@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 
-export default function FigmaPreviewModal({
-  figmaUrl,
+export default function PreviewModal({
   title,
   onClose,
+  children,
 }: {
-  figmaUrl: string;
   title: string;
   onClose: () => void;
+  children: ReactNode;
 }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -23,10 +23,6 @@ export default function FigmaPreviewModal({
     };
   }, [onClose]);
 
-  const embedSrc = `https://www.figma.com/embed?embed_host=voicetonotes-site&url=${encodeURIComponent(
-    figmaUrl
-  )}`;
-
   return (
     <div
       role="dialog"
@@ -36,10 +32,10 @@ export default function FigmaPreviewModal({
       onClick={onClose}
     >
       <div
-        className="relative flex h-full max-h-[48rem] w-full max-w-[72rem] flex-col overflow-hidden rounded-2xl bg-card shadow-card-hover"
+        className="relative flex max-h-[44rem] w-full max-w-[64rem] flex-col overflow-hidden rounded-[1.5rem] bg-card shadow-card-hover"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex shrink-0 items-center justify-between border-b border-slate-200 px-5 py-3">
+        <div className="flex shrink-0 items-center justify-between border-b border-slate-200 px-6 py-4">
           <p className="m-0 font-semibold text-ink-700">{title}</p>
           <button
             type="button"
@@ -50,12 +46,7 @@ export default function FigmaPreviewModal({
             ✕
           </button>
         </div>
-        <iframe
-          src={embedSrc}
-          title={title}
-          className="h-full w-full flex-1 border-0"
-          allowFullScreen
-        />
+        <div className="overflow-y-auto">{children}</div>
       </div>
     </div>
   );
