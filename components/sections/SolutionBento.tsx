@@ -3,7 +3,10 @@ import Slide from "@/components/Slide";
 import RevealGroup from "@/components/RevealGroup";
 import { MicIcon, SparkleIcon, PersonSpeakingIcon } from "@/components/icons";
 
-const tiles = [
+// Design.pdf §3 — 1440 × 1022
+// Columns: L 43→456 (413), M 473→970 (497), R 985→1400 (415)
+
+const featureTiles = [
   {
     Icon: MicIcon,
     title: "Voice-to-Text",
@@ -32,13 +35,13 @@ export default function SolutionBento() {
         The VoiceToNotes Solution
       </h2>
 
-      {/* Desktop */}
+      {/* Desktop — absolute positions match Design.pdf */}
       <RevealGroup className="hidden lg:block">
         <Slide h={1022}>
-          {/* A — intro card */}
+          {/* A — intro */}
           <div
             data-reveal
-            className="card-hover absolute rounded-[1.5rem] bg-card shadow-card"
+            className="card-hover absolute overflow-hidden rounded-[1.5rem] bg-card shadow-card"
             style={{
               left: "2.6875rem",
               top: "2.0625rem",
@@ -54,18 +57,19 @@ export default function SolutionBento() {
                 src="/assets/logo-lockup.png"
                 alt="VoiceToNotes"
                 width={352}
-                height={79}
-                className="w-full" style={{ height: "auto" }}
+                height={68}
+                className="w-full"
+                style={{ height: "auto" }}
               />
             </div>
             <p
-              className="absolute m-0 text-slate-500"
+              className="absolute m-0 font-normal text-slate-500"
               style={{
                 left: "3.25rem",
                 top: "8.5rem",
                 width: "19.8125rem",
                 fontSize: "1.5rem",
-                lineHeight: "1.85rem",
+                lineHeight: "1.9rem",
               }}
             >
               Turn your voice, ideas, and creativity into powerful notes,
@@ -73,7 +77,7 @@ export default function SolutionBento() {
             </p>
           </div>
 
-          {/* B — three feature tiles */}
+          {/* B — white parent with three inset feature tiles */}
           <div
             data-reveal
             className="card-hover absolute rounded-[1.5rem] bg-card shadow-card"
@@ -84,33 +88,42 @@ export default function SolutionBento() {
               height: "14.8125rem",
             }}
           >
-            {tiles.map(({ Icon, title, body }, i) => (
+            {featureTiles.map(({ Icon, title, body }, i) => (
               <div
                 key={title}
-                className="absolute flex flex-col items-center rounded-2xl bg-card-muted text-center"
+                className="absolute flex flex-col items-center justify-center rounded-2xl bg-card-muted text-center"
                 style={{
-                  left: `${[30.5625, 40.5625, 50.5625][i] - 29.5625}rem`,
+                  left: `${1 + i * 10}rem`,
                   top: "0.75rem",
                   width: "9.0625rem",
                   height: "13.25rem",
-                  paddingTop: "2.375rem",
                 }}
               >
-                <Icon aria-hidden className="h-[3rem] w-[3rem] text-ink-700" />
-                <p className="m-0 mt-3 text-[1.25rem] font-semibold text-ink-700">
+                <Icon
+                  aria-hidden
+                  className="text-ink-700"
+                  style={{ width: "3rem", height: "3rem" }}
+                />
+                <p
+                  className="m-0 mt-3 font-semibold text-ink-700"
+                  style={{ fontSize: "1.25rem" }}
+                >
                   {title}
                 </p>
-                <p className="m-0 mt-2 px-1 text-[1.0625rem] font-normal leading-snug tracking-tight text-slate-500">
+                <p
+                  className="m-0 mt-1 px-2 font-normal text-slate-500"
+                  style={{ fontSize: "1.0625rem", lineHeight: "1.3rem" }}
+                >
                   {body}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* C — From Notes to Audio & Video (baked-in text image) */}
+          {/* C — From Notes to Audio & Video */}
           <div
             data-reveal
-            className="card-hover absolute overflow-hidden rounded-[1.5rem]"
+            className="card-hover absolute overflow-hidden rounded-[1.5rem] shadow-card"
             style={{
               left: "61.5625rem",
               top: "2.0625rem",
@@ -127,24 +140,25 @@ export default function SolutionBento() {
             />
           </div>
 
-          {/* D — intentionally empty */}
-          {/* Design.pdf shows this card empty — likely a video/animation that did not export.
-              Drop the real media in here when it is supplied. */}
+          {/* D — empty center card (video/animation missing from PDF export) */}
           <div
             data-reveal
-            className="absolute rounded-[1.5rem] bg-card shadow-card"
+            className="card-hover absolute rounded-[1.5rem] bg-card shadow-card"
             style={{
               left: "29.5625rem",
               top: "18.25rem",
               width: "31.0625rem",
               height: "43.625rem",
             }}
-          />
+          >
+            {/* Design.pdf shows this card empty — likely a video/animation that did not export.
+                Drop the real media in here when it is supplied. */}
+          </div>
 
           {/* E — Text-to-Audio */}
           <div
             data-reveal
-            className="card-hover absolute rounded-[1.5rem] bg-card shadow-card"
+            className="card-hover absolute overflow-hidden rounded-[1.5rem] bg-card shadow-card"
             style={{
               left: "2.6875rem",
               top: "19.75rem",
@@ -154,28 +168,37 @@ export default function SolutionBento() {
           >
             <p
               className="absolute m-0 font-semibold text-ink-700"
-              style={{ left: "2.625rem", top: "1.375rem", fontSize: "2rem" }}
+              style={{
+                left: "2.625rem",
+                top: "1.375rem",
+                fontSize: "2rem",
+              }}
             >
               Text-to-Audio
             </p>
             <div
               className="absolute"
-              style={{ left: "1.4375rem", top: "5rem", width: "22.8125rem" }}
+              style={{
+                left: "1.4375rem",
+                top: "5rem",
+                width: "22.8125rem",
+              }}
             >
               <Image
                 src="/assets/s3-audio-player.png"
                 alt="Audio player bar with playback controls"
                 width={730}
                 height={202}
-                className="w-full" style={{ height: "auto" }}
+                className="w-full"
+                style={{ height: "auto" }}
               />
             </div>
             <p
-              className="absolute m-0 text-slate-500"
+              className="absolute m-0 font-normal text-slate-500"
               style={{
                 left: "1.8125rem",
                 top: "12.3125rem",
-                width: "21.5rem",
+                width: "22rem",
                 fontSize: "1.375rem",
                 lineHeight: "1.7rem",
               }}
@@ -188,7 +211,7 @@ export default function SolutionBento() {
           {/* F — Customizable Parameters */}
           <div
             data-reveal
-            className="card-hover absolute rounded-[1.5rem] bg-card shadow-card"
+            className="card-hover absolute overflow-hidden rounded-[1.5rem] bg-card shadow-card"
             style={{
               left: "61.5625rem",
               top: "22.375rem",
@@ -198,31 +221,34 @@ export default function SolutionBento() {
           >
             <p
               className="absolute m-0 font-semibold leading-tight text-ink-700"
-              style={{ left: "2.8125rem", top: "2.1875rem", fontSize: "2rem" }}
+              style={{
+                left: "2.8125rem",
+                top: "2.1875rem",
+                fontSize: "2rem",
+              }}
             >
               Customizable
               <br />
               Parameters
             </p>
             <p
-              className="absolute m-0 text-slate-500"
+              className="absolute m-0 font-normal text-slate-500"
               style={{
                 left: "2.8125rem",
-                top: "8.4375rem",
-                width: "21rem",
+                top: "7.5rem",
+                width: "20rem",
                 fontSize: "1.375rem",
                 lineHeight: "1.7rem",
               }}
             >
-              Control voice, mood, background sounds, style and visual
-              themes.
+              Control voice, mood, background sounds, style and visual themes.
             </p>
           </div>
 
           {/* G — Text-to-Video */}
           <div
             data-reveal
-            className="card-hover absolute rounded-[1.5rem] bg-card shadow-card"
+            className="card-hover absolute overflow-hidden rounded-[1.5rem] bg-card shadow-card"
             style={{
               left: "2.6875rem",
               top: "40.4375rem",
@@ -232,7 +258,11 @@ export default function SolutionBento() {
           >
             <p
               className="absolute m-0 font-semibold text-ink-700"
-              style={{ left: "2.625rem", top: "1.5rem", fontSize: "2rem" }}
+              style={{
+                left: "2.625rem",
+                top: "1.5rem",
+                fontSize: "2rem",
+              }}
             >
               Text-to-Video
             </p>
@@ -240,7 +270,7 @@ export default function SolutionBento() {
               className="absolute overflow-hidden rounded-xl"
               style={{
                 left: "1.6875rem",
-                top: "2.5625rem",
+                top: "4.25rem",
                 width: "22.4375rem",
                 height: "12.6875rem",
               }}
@@ -249,12 +279,12 @@ export default function SolutionBento() {
                 src="/assets/s3-video-thumb.jpg"
                 alt="Preview of an AI-generated cabin-by-the-lake video"
                 fill
-                sizes="(min-width: 1024px) 22.5rem, 100vw"
+                sizes="(min-width: 1024px) 23rem, 100vw"
                 className="object-cover"
               />
             </div>
             <p
-              className="absolute m-0 text-slate-500"
+              className="absolute m-0 font-normal text-slate-500"
               style={{
                 left: "1.9375rem",
                 top: "14.9375rem",
@@ -263,15 +293,15 @@ export default function SolutionBento() {
                 lineHeight: "1.7rem",
               }}
             >
-              Turn your written content into engaging videos with
-              AI-generated visuals.
+              Turn your written content into engaging videos with AI-generated
+              visuals.
             </p>
           </div>
 
           {/* H — Cross-Device Sync */}
           <div
             data-reveal
-            className="card-hover absolute rounded-[1.5rem] bg-card shadow-card"
+            className="card-hover absolute overflow-hidden rounded-[1.5rem] bg-card shadow-card"
             style={{
               left: "61.5625rem",
               top: "36.75rem",
@@ -281,16 +311,20 @@ export default function SolutionBento() {
           >
             <p
               className="absolute m-0 font-semibold text-ink-700"
-              style={{ left: "2.8125rem", top: "2.3125rem", fontSize: "2rem" }}
+              style={{
+                left: "2.8125rem",
+                top: "2.3125rem",
+                fontSize: "2rem",
+              }}
             >
               Cross-Device Sync
             </p>
             <p
-              className="absolute m-0 text-slate-500"
+              className="absolute m-0 font-normal text-slate-500"
               style={{
                 left: "2.8125rem",
-                top: "6.125rem",
-                width: "21rem",
+                top: "5.5rem",
+                width: "20rem",
                 fontSize: "1.375rem",
                 lineHeight: "1.7rem",
               }}
@@ -299,10 +333,10 @@ export default function SolutionBento() {
             </p>
           </div>
 
-          {/* I — Multi-language Support (baked-in text image) */}
+          {/* I — Multi-language Support */}
           <div
             data-reveal
-            className="card-hover absolute overflow-hidden rounded-[1.5rem]"
+            className="card-hover absolute overflow-hidden rounded-[1.5rem] shadow-card"
             style={{
               left: "61.5625rem",
               top: "48.9375rem",
@@ -312,7 +346,7 @@ export default function SolutionBento() {
           >
             <Image
               src="/assets/s3-multilang.jpg"
-              alt="Multi-language Support — transcribe, summarize and generate in multiple languages"
+              alt="Multi-language Support — Transcribe, summarize and generate in multiple languages"
               fill
               sizes="(min-width: 1024px) 26rem, 100vw"
               className="object-cover"
@@ -321,17 +355,17 @@ export default function SolutionBento() {
         </Slide>
       </RevealGroup>
 
-      {/* Mobile */}
+      {/* Mobile — stacked reading order; omit empty card D */}
       <RevealGroup className="lg:hidden">
         <div className="mx-auto flex max-w-[720px] flex-col gap-5 px-5 py-12">
-          {/* A */}
           <div data-reveal className="rounded-2xl bg-card p-6 shadow-card">
             <Image
               src="/assets/logo-lockup.png"
               alt="VoiceToNotes"
               width={352}
-              height={79}
-              className="w-[220px]" style={{ height: "auto" }}
+              height={68}
+              className="w-[220px]"
+              style={{ height: "auto" }}
             />
             <p className="m-0 mt-4 text-[16px] text-slate-500">
               Turn your voice, ideas, and creativity into powerful notes,
@@ -339,27 +373,25 @@ export default function SolutionBento() {
             </p>
           </div>
 
-          {/* B */}
-          <div className="grid grid-cols-3 gap-3">
-            {tiles.map(({ Icon, title, body }) => (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {featureTiles.map(({ Icon, title, body }) => (
               <div
                 key={title}
                 data-reveal
-                className="flex flex-col items-center rounded-2xl bg-card-muted px-2 py-5 text-center shadow-card"
+                className="flex flex-col items-center rounded-2xl bg-card-muted px-3 py-5 text-center shadow-card"
               >
                 <Icon aria-hidden className="h-7 w-7 text-ink-700" />
-                <p className="m-0 mt-2 text-[13px] font-semibold text-ink-700">
+                <p className="m-0 mt-2 text-[15px] font-semibold text-ink-700">
                   {title}
                 </p>
-                <p className="m-0 mt-1 text-[11px] text-slate-500">{body}</p>
+                <p className="m-0 mt-1 text-[13px] text-slate-500">{body}</p>
               </div>
             ))}
           </div>
 
-          {/* C */}
           <div
             data-reveal
-            className="relative aspect-[16/11] w-full overflow-hidden rounded-2xl"
+            className="relative aspect-[16/11] w-full overflow-hidden rounded-2xl shadow-card"
           >
             <Image
               src="/assets/s3-audio-video.jpg"
@@ -370,7 +402,6 @@ export default function SolutionBento() {
             />
           </div>
 
-          {/* E */}
           <div data-reveal className="rounded-2xl bg-card p-6 shadow-card">
             <p className="m-0 text-[22px] font-semibold text-ink-700">
               Text-to-Audio
@@ -380,7 +411,8 @@ export default function SolutionBento() {
               alt="Audio player bar with playback controls"
               width={730}
               height={202}
-              className="mt-4 w-full" style={{ height: "auto" }}
+              className="mt-4 w-full"
+              style={{ height: "auto" }}
             />
             <p className="m-0 mt-4 text-[15px] text-slate-500">
               Convert notes into natural, high-quality audio with multiple
@@ -388,18 +420,15 @@ export default function SolutionBento() {
             </p>
           </div>
 
-          {/* F */}
           <div data-reveal className="rounded-2xl bg-card p-6 shadow-card">
-            <p className="m-0 text-[22px] font-semibold leading-tight text-ink-700">
+            <p className="m-0 text-[22px] font-semibold text-ink-700">
               Customizable Parameters
             </p>
             <p className="m-0 mt-3 text-[15px] text-slate-500">
-              Control voice, mood, background sounds, style and visual
-              themes.
+              Control voice, mood, background sounds, style and visual themes.
             </p>
           </div>
 
-          {/* G */}
           <div data-reveal className="rounded-2xl bg-card p-6 shadow-card">
             <p className="m-0 text-[22px] font-semibold text-ink-700">
               Text-to-Video
@@ -414,12 +443,11 @@ export default function SolutionBento() {
               />
             </div>
             <p className="m-0 mt-4 text-[15px] text-slate-500">
-              Turn your written content into engaging videos with
-              AI-generated visuals.
+              Turn your written content into engaging videos with AI-generated
+              visuals.
             </p>
           </div>
 
-          {/* H */}
           <div data-reveal className="rounded-2xl bg-card p-6 shadow-card">
             <p className="m-0 text-[22px] font-semibold text-ink-700">
               Cross-Device Sync
@@ -429,14 +457,13 @@ export default function SolutionBento() {
             </p>
           </div>
 
-          {/* I */}
           <div
             data-reveal
-            className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl"
+            className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-card"
           >
             <Image
               src="/assets/s3-multilang.jpg"
-              alt="Multi-language Support — transcribe, summarize and generate in multiple languages"
+              alt="Multi-language Support"
               fill
               sizes="100vw"
               className="object-cover"

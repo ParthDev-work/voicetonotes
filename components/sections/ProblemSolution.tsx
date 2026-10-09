@@ -3,6 +3,10 @@ import Slide from "@/components/Slide";
 import RevealGroup from "@/components/RevealGroup";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/icons";
 
+// Design.pdf §2 — 1440 × 1022
+// Card 1: x 46→1397, y 41→486 (1351 × 445)
+// Card 2: x 46→1397, y 536→981
+
 export default function ProblemSolution() {
   return (
     <section
@@ -17,7 +21,7 @@ export default function ProblemSolution() {
       {/* Desktop */}
       <RevealGroup className="hidden lg:block">
         <Slide h={1022}>
-          {/* Card 1: Problem Statement & Pain Point */}
+          {/* Card 1 — Problem */}
           <div
             data-reveal
             className="card-hover absolute overflow-hidden rounded-[1.5rem] bg-card shadow-card"
@@ -29,12 +33,12 @@ export default function ProblemSolution() {
             }}
           >
             <div
-              className="absolute inset-y-0 left-0 flex items-center justify-center text-center"
+              className="absolute inset-y-0 left-0 flex items-center justify-center"
               style={{ width: "36rem" }}
             >
               <p
-                className="m-0 text-ink-700"
-                style={{ fontSize: "3rem", fontWeight: 400, lineHeight: "3.625rem" }}
+                className="m-0 text-center font-normal text-ink-700"
+                style={{ fontSize: "3rem", lineHeight: "3.625rem" }}
               >
                 Problem Statement
                 <br />
@@ -43,20 +47,21 @@ export default function ProblemSolution() {
                 Pain Point
               </p>
             </div>
-            <ChevronRightIcon
-              aria-hidden
-              className="absolute text-ink-700"
-              style={{
-                left: "33.8125rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-                width: "1.6rem",
-                height: "3rem",
-              }}
-            />
+
             <div
-              className="absolute inset-y-0"
-              style={{ left: "36rem", width: "48.4375rem" }}
+              className="absolute inset-y-0 flex items-center"
+              style={{ left: "33.75rem" }}
+            >
+              <ChevronRightIcon
+                aria-hidden
+                className="text-ink-700"
+                style={{ width: "1.5rem", height: "3rem" }}
+              />
+            </div>
+
+            <div
+              className="absolute inset-y-0 right-0"
+              style={{ left: "36rem" }}
             >
               <Image
                 src="/assets/s2-problem-photo.jpg"
@@ -68,7 +73,7 @@ export default function ProblemSolution() {
             </div>
           </div>
 
-          {/* Card 2: Solution */}
+          {/* Card 2 — Solution */}
           <div
             data-reveal
             className="card-hover absolute overflow-hidden rounded-[1.5rem] bg-card shadow-card"
@@ -91,22 +96,26 @@ export default function ProblemSolution() {
                 className="object-cover"
               />
             </div>
-            <ChevronLeftIcon
-              aria-hidden
-              className="absolute text-ink-700"
-              style={{
-                left: "51.25rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-                width: "1.6rem",
-                height: "3rem",
-              }}
-            />
+
             <div
-              className="absolute inset-y-0 flex items-center justify-center text-center"
-              style={{ left: "48.4375rem", width: "36rem" }}
+              className="absolute inset-y-0 flex items-center"
+              style={{ left: "51.25rem" }}
             >
-              <p className="m-0 text-ink-700" style={{ fontSize: "3rem", fontWeight: 400 }}>
+              <ChevronLeftIcon
+                aria-hidden
+                className="text-ink-700"
+                style={{ width: "1.5rem", height: "3rem" }}
+              />
+            </div>
+
+            <div
+              className="absolute inset-y-0 right-0 flex items-center justify-center"
+              style={{ left: "48.4375rem" }}
+            >
+              <p
+                className="m-0 text-center font-normal text-ink-700"
+                style={{ fontSize: "3rem", lineHeight: "3.625rem" }}
+              >
                 Solution
               </p>
             </div>
@@ -116,7 +125,7 @@ export default function ProblemSolution() {
 
       {/* Mobile */}
       <RevealGroup className="lg:hidden">
-        <div className="mx-auto flex max-w-[720px] flex-col gap-6 px-5 py-12">
+        <div className="mx-auto flex max-w-[720px] flex-col gap-8 px-5 py-12">
           <div
             data-reveal
             className="overflow-hidden rounded-2xl bg-card shadow-card"
@@ -155,7 +164,7 @@ export default function ProblemSolution() {
               />
             </div>
             <div className="px-6 py-8 text-center">
-              <p className="m-0 text-[26px] font-normal text-ink-700">
+              <p className="m-0 text-[26px] font-normal leading-tight text-ink-700">
                 Solution
               </p>
             </div>

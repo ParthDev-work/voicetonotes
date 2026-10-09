@@ -1,5 +1,4 @@
 import Cover from "@/components/sections/Cover";
-import ProblemSolution from "@/components/sections/ProblemSolution";
 import SolutionBento from "@/components/sections/SolutionBento";
 import TechPricing from "@/components/sections/TechPricing";
 import CustomersMarket from "@/components/sections/CustomersMarket";
@@ -11,7 +10,6 @@ export default function Home() {
   return (
     <main>
       <Cover />
-      <ProblemSolution />
       <SolutionBento />
       <TechPricing />
       <CustomersMarket />
