@@ -1,11 +1,6 @@
 # VoiceToNotes — Pitch Deck Website · Build Plan
 
-Static, frontend-only marketing/pitch site. Deploys to Vercel. No backend, no forms, no data fetching.
-
-Source of truth: `Design.pdf` (one page, **1440 × 8355 pt**) in the parent folder, already decomposed for you into:
-
-- `design-ref/01..08-*.png` — per-section reference renders at **1.4×** (so reference px ÷ 1.4 = design pt). **Open these. Build against them. Compare your result to them.**
-- `public/assets/*` — every photographic / mockup / logo asset, pre-cropped from the PDF at the correct aspect ratio.
+Static, frontend-only marketing/pitch site. Deploys to Vercel. No backend, no forms, no data fetching
 
 Everything that is **not** in `public/assets` (cards, text, icons, chips, gradients, rings, player bars) must be rebuilt in HTML/CSS/SVG. Do not screenshot-stuff the page.
 

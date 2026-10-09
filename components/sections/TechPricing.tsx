@@ -8,12 +8,12 @@ const techCards = [
     src: "/assets/s4-tech-1-speech.jpg",
     lines: ["Speech", "Recognition"],
     logo: true,
-    rect: { left: 2.25, top: 9.625, width: 16.1875, height: 14.75 },
+    rect: { left: 2.25, top: 9.625, width: 16.1875, height: 13.3125 },
   },
   {
     src: "/assets/s4-tech-2-ai.jpg",
     lines: ["AI", "Processing"],
-    rect: { left: 18.4375, top: 9.625, width: 15, height: 15 },
+    rect: { left: 18.4375, top: 9.625, width: 15, height: 13.3125 },
   },
   {
     src: "/assets/s4-tech-3-modular.jpg",
