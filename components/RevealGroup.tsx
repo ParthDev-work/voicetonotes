@@ -29,23 +29,34 @@ export default function RevealGroup({
 
     els.forEach((el) => el.classList.add("reveal-pending"));
 
+    // Safety fallback: force all elements visible after 2s
+    // in case IntersectionObserver misses absolutely-positioned items
+    const fallback = window.setTimeout(() => {
+      els.forEach((el) => el.classList.remove("reveal-pending"));
+    }, 2000);
+
     const io = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const idx = els.indexOf(entry.target as HTMLElement);
-          const delay = Math.max(idx, 0) * 60;
+          const delay = Math.max(idx, 0) * 40;
           window.setTimeout(() => {
             entry.target.classList.remove("reveal-pending");
           }, delay);
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+      // threshold:0 ensures absolutely-positioned items with 0 natural
+      // height still fire when the containing Slide scrolls into view
+      { threshold: 0, rootMargin: "0px 0px 0px 0px" }
     );
 
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    return () => {
+      clearTimeout(fallback);
+      io.disconnect();
+    };
   }, []);
 
   return (
