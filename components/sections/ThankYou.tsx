@@ -67,14 +67,14 @@ export default function ThankYou() {
               src="/assets/wordmark.png"
               alt="VoiceToNotes"
               width={430}
-              height={79}
+              height={68}
               className="w-full" style={{ height: "auto" }}
             />
           </div>
           <p
             data-reveal
             className="absolute m-0 text-ink-700"
-            style={{ left: "60.4375rem", top: "38.4375rem", fontSize: "1.375rem" }}
+            style={{ left: "60.4375rem", top: "38.8125rem", fontSize: "1.375rem" }}
           >
             Stop Typing, Start Speaking.
           </p>
@@ -140,7 +140,7 @@ export default function ThankYou() {
               src="/assets/wordmark.png"
               alt="VoiceToNotes"
               width={430}
-              height={79}
+              height={68}
               className="w-full" style={{ height: "auto" }}
             />
           </div>

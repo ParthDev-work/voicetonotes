@@ -132,6 +132,7 @@ export default function Team() {
               alt="VoiceToNotes team directory over a group photo"
               fill
               sizes="(min-width: 1024px) 60vw, 100vw"
+              quality={100}
               className="object-cover object-left"
             />
             <div

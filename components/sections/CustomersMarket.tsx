@@ -292,7 +292,7 @@ export default function CustomersMarket() {
             </h3>
             <p
               className="absolute m-0 text-slate-500"
-              style={{ left: "1.25rem", top: "2.25rem", width: "40rem", fontSize: "1rem" }}
+              style={{ left: "1.25rem", top: "2.25rem", width: "55rem", fontSize: "1rem" }}
             >
               Large and growing opportunity for AI-powered productivity and
               voice-first computing.
