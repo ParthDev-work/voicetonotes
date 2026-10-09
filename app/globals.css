@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #e8e8e8;
+  --color-card: #ffffff;
+  --color-card-muted: #f6f6f6;
+  --color-ink: #100e24;
+  --color-ink-900: #1a1a2e;
+  --color-ink-800: #1e293b;
+  --color-ink-700: #272727;
+  --color-muted: #8b8b9b;
+  --color-brand: #ff0d4a;
+  --color-pink-tile: #f8c2cb;
+  --color-purple-tint: #f3e8ff;
+
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e3e8ef;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.06);
+  --shadow-card-hover: 0 2px 4px rgb(0 0 0 / 0.06), 0 14px 32px rgb(0 0 0 / 0.1);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+/* 1024-1439px: proportional shrink of the whole desktop canvas.
+   1440 / 16 = 90, so 100vw/90 == 16px exactly at 1440px wide. */
+@media (min-width: 1024px) and (max-width: 1439.98px) {
+  html {
+    font-size: calc(100vw / 90);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink-700);
+  overflow-x: hidden;
+}
+
+.canvas {
+  max-width: 90rem;
+}
+
+/* ---- Reveal-on-scroll ----
+   Default (no-JS, or not yet observed): fully visible.
+   JS adds .reveal-pending on mount, then removes it when the element
+   scrolls into view (staggered). This guarantees content is visible
+   with JS disabled. */
+[data-reveal] {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+[data-reveal].reveal-pending {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+/* ---- Card hover ---- */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+@media (min-width: 1024px) {
+  .card-hover:hover {
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal],
+  [data-reveal].reveal-pending,
+  .card-hover {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.focus-ring {
+  outline-offset: 2px;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
